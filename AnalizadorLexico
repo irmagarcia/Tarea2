@@ -1,0 +1,28 @@
+/* TOKENS
+#define ID  1
+#define  ARITH 2
+#define REL 3
+#define  ASIG 4
+#define LOG 5
+#define  SIM 6
+#define NUM 7
+*/
+%{
+#include <stdio.h>
+%}
+%option noyywrap 
+id [a-zA-Z_][a-zA-Z0-9_]*
+arith [+-*/%]*
+rel [><=]*
+asig [=]
+log []
+sim [,.;]
+%%
+"if" {pri
+ntf("IF\n");}
+"else"{printf("ELSE"\n);}
+{id} {return ID; }
+[\n\t\r]+ {}
+. { printf("Error:");}
+
+%%
